@@ -1,5 +1,5 @@
 <?php
-    $dsn = "mysql:host=localhost;dbname=livreor";
+    $dsn = "mysql:host=localhost;dbname=discussion";
     $userDB = 'root';
     $passDB = '';
     // $pdo = new PDO("mysql:host=$host;port=8889;dbname=$dBase","$userDB", "$passDB");

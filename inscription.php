@@ -7,45 +7,68 @@
     les données sont insérées dans la base de données 
     et l’utilisateur est redirigé vers la page de connexion.
   */
-    // 
+   
     require_once('pdo.php');
 
 
-        $error = null;
+    $error = null;
 
-      $lenght_login = strlen($login);
-      $lenght_password = strlen($password);
-if (isset($_POST['submit'])) 
-{
-	if ($_POST['password'] == $_POST['password_confirm'])
+
+
+
+	if (isset($_POST['submit'])) 
 	{
- 		if ($lenght_login <= 255 AND $lenght_password <=255) 
-		{
-			$count = $bdd->prepare("SELECT COUNT(*) FROM utilisateurs WHERE login = :login");
-	        $count->execute(array(':login' => $login));
-	        $num_rows = $count->fetchColumn();
+		echo 'inside submit<br>';
+		$length_login = strlen($_POST['login']);
+    	$length_password = strlen($_POST['password']);
 
-	        if (!$num_rows)
-	        {
-	          $crypted_password = password_hash($password, PASSWORD_BCRYPT);
-	          $insert = $bdd->prepare("INSERT INTO utilisateurs(login, password) VALUES(:login, :crypted_password)");
-	          $insert->execute(array( ':login' => $login, ':crypted_password' => $crypted_password));
-	        }
-	        else 
-	        {
-	          $error = "Le login exite déja";
-	        }		
-		}
-		else
+		if ($_POST['password'] == $_POST['password_confirm'])
 		{
-			$error = "Tout doit faire au max 255 caractères";
+			// DEBUG
+			echo "password OK<br>";
+			if ($length_login <= 255 AND $length_password <=255) 
+			{
+				// DEBUG
+				echo '30: length: OK<br>';
+				$count = $pdo->prepare("SELECT * FROM `utilisateurs` WHERE login = :login");
+		        $count->execute(array(':login' => htmlentities($_POST['login'])));
+		        $num_rows = $count->fetch(PDO::FETCH_ASSOC);
+		        // echo $num_rows;
+		        var_dump($num_rows);
+
+		         if (!$num_rows)
+		        {
+		        	$rgt = "INSERT INTO utilisateurs (login, password) VALUES (:login, :password)";
+                
+                // DEBUG
+                echo "<pre>\n" . $rgt . "</pre>";
+    
+                // sanitizing input query
+                $stmt = $pdo->prepare($rgt);
+    
+                $stmt->execute([
+                    ':login' => htmlentities($_POST['login']), 
+                    ':password' => password_hash( htmlentities( $_POST['password']), PASSWORD_DEFAULT)
+                ]);
+
+                $ok =  'Votre profil a été créé avec succès!';
+
+		        }
+		        else 
+		        {
+		           $error = "Le login exite déja";
+		        }		
+			}
+			else
+			{
+				$error = "Tout doit faire au max 255 caractères";
+			}
+		}
+		else 
+		{
+			$error = "le mot de passe de confirmation dois correspondre au mot de passe";
 		}
 	}
-	else 
-	{
-		$error = "le mot de passe de confirmation dois correspondre au mot de passe";
-	}
-}
 
 
 
@@ -66,5 +89,14 @@ if (isset($_POST['submit']))
                 <input type="submit" id="submitButton" name="submit" value="M'inscrire" />
                 <input type='submit' name='cancel' value='annuler' />          
             </form>
+            <?php  
+
+            	if (isset($error)) {
+            		echo $error;
+            		# code...
+            	}
+            	else echo $ok;
+
+            ?>
 
             
