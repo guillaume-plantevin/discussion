@@ -84,6 +84,12 @@
   <main class="container">
     <h1>connexion</h1>
     <p>Pour vous connecter, merci de renseigner les champs suivants:</p>
+    <?php 
+      if (isset($_SESSION['error'])) {
+          echo '<p class="error">' . $_SESSION['error'] . '</p>';
+          unset($_SESSION['error']);
+      }
+  ?>
     
     <form action="" method="post">
       <label for="login">Login:</label>
