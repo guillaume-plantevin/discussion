@@ -1,0 +1,61 @@
+@font-face{
+    font-family: "titre";
+    src:url(../fonts/Championship.ttf);
+}
+
+
+                          /* personnalisation des message 'error' et 'success'*/
+.error {
+    width: 50%;
+    padding: 1em;
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+}
+.success {
+    width: 50%;
+    padding: 1em;
+    background-color: rgb(14, 224, 14);
+    border-radius: 10px;
+    color: white;
+}
+
+                                       /*ACCUEIL    134 111 79 */  
+
+.body-accueil{
+    /*background-color: rgb(168, 120, 84);*/
+    display: flex;
+    justify-content: center;
+}
+
+          /*Personnalisation du titre*/
+
+.h1-accueil {
+    font-family: "titre";
+    text-align: center;
+    font-size: 90px; 
+    height: 250px;
+    color: black;
+    margin-left: 275px;
+
+}
+
+header {
+    margin:20px;
+    height: 250px;
+    border-radius: 5px;
+    width: 90%;
+    
+        height: 250px;
+    border-radius: 5px;
+    box-shadow: 0 0 20em  lightgrey;
+    background: no-repeat center  url(../images/bk3.jpg);
+    background-size: cover;
+}
+
+.div1-accueil{
+    margin-top: 80px;
+    
+
+
+}
