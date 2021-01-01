@@ -35,7 +35,7 @@
                     				':password' => password_hash( htmlentities( $_POST['password']), PASSWORD_DEFAULT)
                 	]);
                 	$_SESSION['success'] =  'Votre profil a été créé avec succès!';
-                	header('location: inscription.php');
+                	header('location: connexion.php');
                 	return;
 
 		        }

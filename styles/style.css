@@ -2,9 +2,8 @@
     font-family: "titre";
     src:url(../fonts/Championship.ttf);
 }
+/* ============ personnalisation des message 'error' et 'success' =============== */
 
-
-                          /* personnalisation des message 'error' et 'success'*/
 .error {
     width: 50%;
     padding: 1em;
@@ -20,7 +19,7 @@
     color: white;
 }
 
-                                       /*ACCUEIL    134 111 79 */  
+/*ACCUEIL    134 111 79 */  
 
 .body-accueil{
     /*background-color: rgb(168, 120, 84);*/
@@ -28,7 +27,7 @@
     justify-content: center;
 }
 
-          /*Personnalisation du titre*/
+/* ==================  Personnalisation du titre  =================*/
 
 .h1-accueil {
     font-family: "titre";
@@ -39,14 +38,12 @@
     margin-left: 275px;
 
 }
-
 header {
     margin:20px;
     height: 250px;
     border-radius: 5px;
     width: 90%;
-    
-        height: 250px;
+    height: 250px;
     border-radius: 5px;
     box-shadow: 0 0 20em  lightgrey;
     background: no-repeat center  url(../images/bk3.jpg);
@@ -55,7 +52,41 @@ header {
 
 .div1-accueil{
     margin-top: 80px;
-    
+}
 
 
+/*  ================  FORM  ===================== */
+label {
+    display: inline-block;
+    width: 8em;
+    margin-bottom: 1em;
+}
+/* =================  FOOTER ===================== */
+.footer {
+    /* padding: 0; margin: 0; box-sizing: border-box; */
+    /* width: 100%; */
+    height: 3em;
+    background-color: orange;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+}
+.footer p {
+    padding: 1em 0;
+}
+
+/* *{padding: 0; margin: 0; box-sizing: border-box;} */
+
+/* ============== TABLE ======================= */
+table td{
+    border: 2px solid black;
+}
+table tr td {
+    border-collapse: collapse;
+}
+td {
+    padding: .5em 2em;
+}
+.info {
+    font-style:italic;
 }

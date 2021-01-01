@@ -8,31 +8,24 @@
   */
   
   require_once('pdo.php');
+  require_once('functions/functions.php');
 
-  $rgt = "INSERT INTO utilisateurs (login, password) VALUES (:login, :password)";
-                
-                // DEBUG
-                // echo "<pre>\n" . $rgt . "</pre>";
-    
-                // sanitizing input query
-                $stmt = $pdo->prepare($rgt);
-    
-                $stmt->execute([
-                    ':login' => 'test', 
-                    ':password' => password_hash('123', PASSWORD_DEFAULT)
-                ]);
+  $title = 'connexion';
 
-                // $_SESSION['success'] = 'Votre profil a été créé avec succès!';
-                // GOTO
-                // header('Location: connexion.php');
-                // return;
-
+  // CANCEL
   if (isset($_POST['cancel'])) {
     // Redirect the browser to deconnexion.php
     header("Location: deconnexion.php");
     return;
   }
+
+  // SEND POST
   if (isset($_POST['submit'])) {
+
+    // DEBUG 
+    print_r_pre($_POST, '$_POST');
+
+    // NO LOGIN
     if (empty($_POST['login'])) {
         $_SESSION['error'] = 'Vous devez rentrer votre login pour vous connecter.';
         header('Location: connexion.php');
@@ -44,52 +37,57 @@
         header('Location: connexion.php');
         return;
     }
-    if ( isset($_POST['login']) && isset($_POST['password']) ) {
+    // OKAY
+    else {
+      $sql = "SELECT * FROM utilisateurs WHERE login = :login";
 
-        $sql = "SELECT * FROM utilisateurs WHERE login = :login";
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute([':login' => htmlentities($_POST['login'])]);
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $stmt = $pdo->prepare($sql);
+      // DEBUG
+      print_r_pre($row, '49: $row');
 
-        $stmt->execute([':login' => $_POST['login']]);
-        
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      // NO RETURN => NO USER IN DB
+      if (empty($row)) {
+        $_SESSION['error'] = 'Ce Login n\'existe pas dans notre base de donnée.';
+        header('Location: connexion.php');
+        return;
+      }
 
-        // DEBUG
-        print_r_pre($row, '$row');
-
-        if (empty($row)) {
-            $_SESSION['error'] = 'Ce Login n\'existe pas dans notre base de donnée.';
+      else { 
+        // NOT THE SAME PASSWORD
+        if (!password_verify(htmlentities($_POST['password']), $row['password'])) {
+            $_SESSION['error'] = 'Votre mot de passe n\'est pas similaire à celui enregistré lors de votre inscription.';
             header('Location: connexion.php');
             return;
         }
-        else { 
-            // NOT THE SAME PASSWORD
-            if (!password_verify($_POST['password'], $row['password'])) {
-                $_SESSION['error'] = 'Votre mot de passe n\'est pas similaire à celui enregistré lors de votre inscription.';
-                header('Location: connexion.php');
-                return;
-            }
-            // OK
-            // faire le tour des infos de l'utilisateur dans la DB et les copier dans $_SESSION
-            foreach($row as $k => $v) {
-                $_SESSION[$k] = $v;
-            }
-            // BOOL LOGGED
-            $_SESSION['logged'] = TRUE;
-            // CHARGING PASSWORD, NOT THE HASH
-            $_SESSION['password'] = htmlentities($_POST['password']);
-
-            // GOTO
-            // header('location: profil.php');
-            return;
+        // OK
+        // faire le tour des infos de l'utilisateur dans la DB et les copier dans $_SESSION
+        foreach($row as $k => $v) {
+            $_SESSION[$k] = $v;
         }
-    }
-}
+        // BOOL LOGGED
+        $_SESSION['logged'] = TRUE;
+        // CHARGING PASSWORD, NOT THE HASH
+        $_SESSION['password'] = htmlentities($_POST['password']);
 
+        // DEBUG
+        print_r_pre($_SESSION, '75: $_SESSION');
+
+        // GOTO
+        header('location: profil.php');
+        return;
+      }
+    }
+  }
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+  <?php
+    require_once("templates/head.php");
+  ?>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -108,19 +106,22 @@
           echo '<p class="error">' . $_SESSION['error'] . '</p>';
           unset($_SESSION['error']);
       }
-  ?>
+    ?>
     
-    <form action="" method="post">
+    <form action="connexion.php" method="POST">
       <label for="login">Login:</label>
       <input type="text" name="login" id="login"> <br />
       
       <label for="pass">password:</label>
-      <input type="password" name="" id="pass"> <br />
+      <input type="password" name="password" id="pass"> <br />
       
       <input type="submit" name='submit' value="connexion">
       <input type="submit" name='cancel' value="annuler">
     </form>
   </main>
+  <?php
+    require_once('templates/footer.php');
+  ?>
   
 </body>
 </html>
