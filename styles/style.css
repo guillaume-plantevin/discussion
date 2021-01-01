@@ -1,18 +1,20 @@
-@font-face{
+@font-face
+{
     font-family: "titre";
     src:url(../fonts/Championship.ttf);
 }
 
-
                           /* personnalisation des message 'error' et 'success'*/
-.error {
+.error 
+{
     width: 50%;
     padding: 1em;
     background-color: red;
     border-radius: 10px;
     color: white;
 }
-.success {
+.success 
+{
     width: 50%;
     padding: 1em;
     background-color: rgb(14, 224, 14);
@@ -22,8 +24,11 @@
 
                                        /*ACCUEIL    134 111 79 */  
 
-.body-accueil{
-    /*background-color: rgb(168, 120, 84);*/
+.body-accueil h1{
+    color: red;
+}
+.body-accueil
+{
     display: flex;
     justify-content: center;
 }
@@ -35,9 +40,8 @@
     text-align: center;
     font-size: 90px; 
     height: 250px;
-    color: black;
+    color: red;
     margin-left: 275px;
-
 }
 
 header {
@@ -45,12 +49,13 @@ header {
     height: 250px;
     border-radius: 5px;
     width: 90%;
-    
-        height: 250px;
     border-radius: 5px;
     box-shadow: 0 0 20em  lightgrey;
     background: no-repeat center  url(../images/bk3.jpg);
     background-size: cover;
+}
+header p{
+    color: green;
 }
 
 .div1-accueil{
