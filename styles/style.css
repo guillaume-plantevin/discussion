@@ -2,9 +2,8 @@
     font-family: "titre";
     src:url(../fonts/Championship.ttf);
 }
+/* ============ personnalisation des message 'error' et 'success' =============== */
 
-
-                          /* personnalisation des message 'error' et 'success'*/
 .error {
     width: 50%;
     padding: 1em;
@@ -19,7 +18,7 @@
     border-radius: 10px;
     color: white;
 }
-                                    /*ACCUEIL    134 111 79 */  
+/*ACCUEIL    134 111 79 */  
 
 .body-accueil{
     /*background-color: rgb(168, 120, 84);*/
@@ -28,7 +27,7 @@
     flex-direction: column;
 }
 
-          /*Personnalisation du titre*/
+/* ==================  Personnalisation du titre  =================*/
 
 .h1-accueil {
     font-family: "titre";
@@ -38,16 +37,6 @@
     color: black;
     margin-left: 275px;
 
-}
-
-
-/*  ===========  Inscription  ==============  */
-
-
-label {
-    display: inline-block;
-    width: 5em;
-    margin-bottom: 1em;
 }
 
 header {
@@ -66,8 +55,25 @@ header {
 .div1-accueil{
     margin-top: 80px;
 }
-
-
+/*  ================  FORM  ===================== */
+label {
+    display: inline-block;
+    width: 8em;
+    margin-bottom: 1em;
+}
+/* =================  FOOTER ===================== */
+.footer {
+    /* padding: 0; margin: 0; box-sizing: border-box; */
+    /* width: 100%; */
+    height: 3em;
+    background-color: orange;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+}
+.footer p {
+    padding: 1em 0;
+}
 
 /*NAV BAR*/
 nav{
@@ -78,9 +84,6 @@ nav{
 header nav ol li a:hover{
 color: black;
 }
-
-
-
 .breadcrumb {
   list-style-type: none;
   padding: 0;
@@ -126,8 +129,8 @@ li::after {
 }
 
 a {
-    font-size: 25px;
-    font-weight: 400;
+  font-size: 25px;
+  font-weight: 400;
   display: inline-block;
   position: relative;
   line-height: 2.5;
@@ -203,3 +206,17 @@ li:first-child::before, li:first-child::after {
 #menu-accordeon li:hover li {
         max-height: 15em;
 }*/
+/* ============== TABLE ======================= */
+table td{
+    border: 2px solid black;
+}
+table tr td {
+    border-collapse: collapse;
+}
+td {
+    padding: .5em 2em;
+}
+.info {
+    font-style:italic;
+}
+
