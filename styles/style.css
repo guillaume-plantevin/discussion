@@ -2,9 +2,7 @@
     font-family: "titre";
     src:url(../fonts/Championship.ttf);
 }
-
-
-                          /* personnalisation des message 'error' et 'success'*/
+/* ============ personnalisation des message 'error' et 'success' =============== */
 .error {
     width: 50%;
     padding: 1em;
@@ -20,7 +18,7 @@
     color: white;
 }
 
-                                       /*ACCUEIL    134 111 79 */  
+/*ACCUEIL    134 111 79 */  
 
 .body-accueil{
     /*background-color: rgb(168, 120, 84);*/
@@ -58,4 +56,16 @@ header {
     
 
 
+}
+/* ================= FOOTER ===================== */
+.footer {
+    /* width: 100%; */
+    height: 3em;
+    background-color: orange;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+}
+.footer p {
+    padding: 1em 0;
 }
