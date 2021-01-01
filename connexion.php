@@ -1,12 +1,31 @@
 <?php
-  session_start(;)
+  session_start();
   /*
     Une page contenant un formulaire de connexion (connexion.php) :
     Le formulaire doit avoir deux inputs : “login” et “password”. 
     Lorsque le formulaire est validé, s’il existe un utilisateur en bdd correspondant à ces informations, 
     alors l’utilisateur devient connecté et une (ou plusieurs) variables de session sont créées. 
   */
+  
   require_once('pdo.php');
+
+  $rgt = "INSERT INTO utilisateurs (login, password) VALUES (:login, :password)";
+                
+                // DEBUG
+                // echo "<pre>\n" . $rgt . "</pre>";
+    
+                // sanitizing input query
+                $stmt = $pdo->prepare($rgt);
+    
+                $stmt->execute([
+                    ':login' => 'test', 
+                    ':password' => password_hash('123', PASSWORD_DEFAULT)
+                ]);
+
+                // $_SESSION['success'] = 'Votre profil a été créé avec succès!';
+                // GOTO
+                // header('Location: connexion.php');
+                // return;
 
   if (isset($_POST['cancel'])) {
     // Redirect the browser to deconnexion.php
@@ -61,7 +80,7 @@
             $_SESSION['password'] = htmlentities($_POST['password']);
 
             // GOTO
-            header('location: profil.php');
+            // header('location: profil.php');
             return;
         }
     }
