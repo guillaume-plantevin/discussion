@@ -21,5 +21,6 @@
 				</video>
 			</div>
 		</main>
+		<?php require_once('templates/footer.php'); ?>
 	</body>
 </html>
