@@ -207,7 +207,7 @@ li:first-child::before, li:first-child::after {
         max-height: 15em;
 }*/
 /* ============== TABLE ======================= */
-table td{
+table td {
     border: 2px solid black;
 }
 table tr td {
