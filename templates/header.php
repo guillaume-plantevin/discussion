@@ -24,7 +24,7 @@
 				?>	
 			<!-- </li> -->
 			<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-				<a itemprop="item" href="#"><span itemprop="name">Discussion</span></a><meta itemprop="position" content="4" />
+				<a itemprop="item" href="discussion.php"><span itemprop="name">Discussion</span></a><meta itemprop="position" content="4" />
 			</li>
 		</ol>
 		<!-- <ul id="menu-accordeon">
