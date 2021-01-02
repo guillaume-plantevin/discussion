@@ -49,8 +49,6 @@
 			// sanitizing input query
 			$stmt = $pdo->prepare($sql);
 
-
-			// PAS FINI!!!!
 			$stmt->execute([
 				':message' => htmlentities($_POST['message']), 
 				':id_utilisateur' => $_SESSION['id'],
@@ -89,7 +87,6 @@
 					echo '<p class="success">' . $_SESSION['success'] . '</p>';
 					unset($_SESSION['success']);
 				}
-				echo '<table>';
 				while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 					$orgDate = $row['date'];  
 					$newDate = date("d-m-Y", strtotime($orgDate));  
@@ -97,8 +94,7 @@
 						echo '<h6>Posté par ' . $row['login'] . ', le ' . $newDate . '</h6>';
 						echo '<p>' . $row['message'] . '</p>';
 					echo '</article>';
-				}
-				
+				}	
 			?>
 			<div>
 				<formfield id='message'>
