@@ -68,13 +68,8 @@
 				$count->execute(array(':login' => htmlentities($_POST['login'])));
 				$result = $count->fetch(PDO::FETCH_ASSOC);
 
-				// debug
-				// var_dump_pre($result, '72:$num_rows');
-
 				// LOGIN ALREADY EXISTS
 				if (!empty($result)) {
-					// DEBUG
-					echo '77: not empty';
 					$_SESSION['error'] = "Ce login exite déjà, veuillez en choisir un autre.";
 		            header('location: inscription.php');
                 	return;
