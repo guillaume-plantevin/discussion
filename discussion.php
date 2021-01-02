@@ -44,7 +44,7 @@
 					VALUES 
 					(:message, :id_utilisateur, :date)";
 			// DEBUG
-			var_dump_pre($sql, '$sql');
+			// var_dump_pre($sql, '$sql');
 
 			// sanitizing input query
 			$stmt = $pdo->prepare($sql);
@@ -67,15 +67,8 @@
 			FROM `messages` JOIN `utilisateurs` 
 			WHERE utilisateurs.id = messages.id_utilisateur ORDER BY messages.ID";
 
-	if (! $result = $pdo->query($stmt) ) {
-		// DEBUG
-		$_SESSION['error'] = 'Les messages enregistrés ne peuvent pas être reecupérés.';
-		// echo 'error';
-		// echo 'ok';
-		// $row = $result->fetch(PDO::FETCH_ASSOC);
-		// DEBUG
-		// print_r_pre($row, '60: $rows');
-	}
+	if (! $result = $pdo->query($stmt) ) 
+		$_SESSION['error'] = 'Les messages enregistrés ne peuvent pas être récupérés.';
 ?>
 
 <!DOCTYPE html>
@@ -86,8 +79,6 @@
         <main class='container'>
             <h1>Fil de Discussion</h1>
             <p>Si vous voulez rajouter un commentaire, si vous suffit de l'<a href='#message'>écrire</a> et de le valider:</p>
-            
-
             <?php 
 				if (isset($_SESSION['error'])) {
 					echo '<p class="error">' . $_SESSION['error'] . '</p>';
@@ -102,8 +93,6 @@
 				while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 					$orgDate = $row['date'];  
 					$newDate = date("d-m-Y", strtotime($orgDate));  
-					// echo "New date format is: ".$newDate. " (MM-DD-YYYY)"; 
-					// print_r_pre($row, '109:$row');
 					echo '<article class="commentaires">';
 						echo '<h6>Posté par ' . $row['login'] . ', le ' . $newDate . '</h6>';
 						echo '<p>' . $row['message'] . '</p>';
