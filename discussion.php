@@ -8,121 +8,123 @@
     Les utilisateurs non connectés souhaitant accéder 
     à cette page sont redirigés vers la page de connexion.
   */
-  session_start();
+	session_start();
 
-  require_once('pdo.php');
-  require_once('functions/functions.php');
+	require_once('pdo.php');
+	require_once('functions/functions.php');
 
-  $title = 'discussion';
+	$title = 'discussion';
 
-  // DEBUG
-  print_r_pre($_SESSION, '$_SESSION:');
-  print_r_pre($_POST, '$_POST:');
+	// DEBUG
+	// print_r_pre($_SESSION, '$_SESSION:');
+	// print_r_pre($_POST, '$_POST:');
 
-  // CANCEL
-  if (isset($_POST['cancel'])) {
-    header("Location: discussion.php");
-    return;
-  }
-  
-  if (isset($_POST['submit'])) {
-    if (empty($_POST['message'])) {
-        $_SESSION['error'] = 'Vous ne pouvez pas sauvegarder un commentaire vide.';
-        header('Location: discussion.php');
-        return;
-    }
-    else {
-      $sql = "INSERT INTO messages 
-              (message, id_utilisateur, date) 
-              VALUES 
-              (:message, :id_utilisateur, :date)";
-      // DEBUG
-      var_dump_pre($sql, '$sql');
+	// IF NOT LOGGED
+	if (! isset($_SESSION['logged'])) {
+		$_SESSION['error'] = 'Le fil de discussion n\'est visible que par les utilisateurs qui sont connectés.';
+		header('Location: connexion.php');
+		return;
+	}
+	// CANCEL
+	if (isset($_POST['cancel'])) {
+		header("Location: discussion.php");
+		return;
+	}
+	// POST-FORM SEND
+	if (isset($_POST['submit'])) {
+		// EMPTY MSG
+		if (empty($_POST['message'])) {
+			$_SESSION['error'] = 'Vous ne pouvez pas sauvegarder un commentaire vide.';
+			header('Location: discussion.php');
+			return;
+		}
+		else {
+			$sql = "INSERT INTO messages 
+					(message, id_utilisateur, date) 
+					VALUES 
+					(:message, :id_utilisateur, :date)";
+			// DEBUG
+			var_dump_pre($sql, '$sql');
 
-      // sanitizing input query
-      $stmt = $pdo->prepare($sql);
+			// sanitizing input query
+			$stmt = $pdo->prepare($sql);
 
 
-      // PAS FINI!!!!
-      $stmt->execute([
-          ':message' => htmlentities($_POST['message']), 
-          ':id_utilisateur' => $_SESSION['id'],
-          ':date' => $timestamp = date('y-m-d H:i:s')
-      ]);
+			// PAS FINI!!!!
+			$stmt->execute([
+				':message' => htmlentities($_POST['message']), 
+				':id_utilisateur' => $_SESSION['id'],
+				':date' => $timestamp = date('y-m-d H:i:s')
+			]);
 
-      $_SESSION['success'] = 'Votre message a été rajouté avec succès!';
-      header('Location: discussion.php');
-      return;
-    }
-  }
-  // GO GET MESSAGES
-  $stmt = "SELECT messages.message, utilisateurs.login, messages.date
-            FROM `messages` JOIN `utilisateurs` 
-            WHERE utilisateurs.id = messages.id_utilisateur ORDER BY messages.ID";
+			$_SESSION['success'] = 'Votre message a été rajouté avec succès!';
+			header('Location: discussion.php');
+			return;
+		}
+	}
+	// GET MESSAGES FROM DB
+	$stmt = "SELECT messages.message, utilisateurs.login, messages.date
+			FROM `messages` JOIN `utilisateurs` 
+			WHERE utilisateurs.id = messages.id_utilisateur ORDER BY messages.ID";
 
-  if ( $result = $pdo->query($stmt) ) {
-      // DEBUG
-      echo 'ok';
-      // $row = $result->fetch(PDO::FETCH_ASSOC);
-      // DEBUG
-      // print_r_pre($row, '60: $rows');
-  }
-  else {
-    // DEBUG
-      echo 'error';
-  }
+	if (! $result = $pdo->query($stmt) ) {
+		// DEBUG
+		$_SESSION['error'] = 'Les messages enregistrés ne peuvent pas être reecupérés.';
+		// echo 'error';
+		// echo 'ok';
+		// $row = $result->fetch(PDO::FETCH_ASSOC);
+		// DEBUG
+		// print_r_pre($row, '60: $rows');
+	}
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
     <?php require_once('templates/head.php');?>
     <body>
-        <header>
-            
-        </header>
+    <?php require_once('templates/header.php'); ?>
         <main class='container'>
             <h1>Fil de Discussion</h1>
-            <p>Si vous voulez rajouter un commentaire, si vous suffit de l'écrire et de le valider:</p>
+            <p>Si vous voulez rajouter un commentaire, si vous suffit de l'<a href='#message'>écrire</a> et de le valider:</p>
             
 
             <?php 
-              if (isset($_SESSION['error'])) {
-                echo '<p class="error">' . $_SESSION['error'] . '</p>';
-                unset($_SESSION['error']);
-              }
-              elseif ( isset($_SESSION['success']) ) 
-              {
-                echo '<p class="success">' . $_SESSION['success'] . '</p>';
-                unset($_SESSION['success']);
-              }
-            ?>
-            <form action="" method="POST">
-                <label for="message" class='block'>Votre message:</label>
-                <textarea name="message" id="message" cols="40" rows="6"></textarea>
-                <br />
-
-                <input class='button' type='submit' name='cancel' value='annuler'>
-                <input class='button' type="submit" name='submit' value="enregistrer">
-            </form>
-            <?php
-              echo '<table>';
-              while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                // print_r_pre($row, '109:$row');
-                echo '<tr>';
-                  echo '<td class="info">';
-                  echo $row['date'] . ' par ' . $row['login'];
-                  echo '</td>';
-                echo '</tr>';
-
-                echo '<tr>';
-                  echo '<td>';
-                  echo $row['message'];
-                  echo '</td>';
-                echo '</tr>';
-              }
-              echo '</table>';
-            ?>
+				if (isset($_SESSION['error'])) {
+					echo '<p class="error">' . $_SESSION['error'] . '</p>';
+					unset($_SESSION['error']);
+				}
+				elseif ( isset($_SESSION['success']) ) 
+				{
+					echo '<p class="success">' . $_SESSION['success'] . '</p>';
+					unset($_SESSION['success']);
+				}
+				echo '<table>';
+				while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+					$orgDate = $row['date'];  
+					$newDate = date("d-m-Y", strtotime($orgDate));  
+					// echo "New date format is: ".$newDate. " (MM-DD-YYYY)"; 
+					// print_r_pre($row, '109:$row');
+					echo '<article class="commentaires">';
+						echo '<h6>Posté par ' . $row['login'] . ', le ' . $newDate . '</h6>';
+						echo '<p>' . $row['message'] . '</p>';
+					echo '</article>';
+				}
+				
+			?>
+			<div>
+				<formfield id='message'>
+					<legend>Ajouter un message:</legend>
+					<form action="" method="POST">
+						<label for="message" class='block'>Votre message:</label>
+						<textarea name="message" id="message" cols="40" rows="6"></textarea>
+						<br />
+						
+						<input class='button' type='submit' name='cancel' value='annuler'>
+						<input class='button' type="submit" name='submit' value="enregistrer">
+					</form>
+				</formfield>
+			</div>
         </main>
-        
+        <?php require_once('templates/footer.php'); ?>
     </body>
 </html>
