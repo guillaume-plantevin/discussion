@@ -69,6 +69,10 @@
 		require_once("templates/head.php")  
 	?>
 	<body>
+		<?php
+			require_once("templates/header.php")  
+		?>
+
 		<main class="container">
 			<form action="inscription.php" method="POST">
 

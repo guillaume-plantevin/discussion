@@ -7,16 +7,24 @@ $title = "accueil";
 require_once("templates/head.php")
 ?>
 
-<body class="body-accueil">
+<body>
 
 	<?php 
 	require_once("templates/header.php")
 	?>
-	<div class="video1">
-<video class="video_soccer" width="1200" autoplay="" >
-  <source src="videos/foot.mp4" type="video/mp4">
-</video>
-</div>
+	<div class="img1">
+		<img class="image_soccer" src="images/stade_1.jpg" alt="stade"></img>
+	</div>
+	<div class="presentation">
+		<article>
+			<h1>Bienvenue</h1>
+			<p>djqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf n ln nsfjdnlxn ln nl ndjqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf n ln nsfjdnlxn ln nl ndjqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf n ln nsfjdnlxn ln nl ndjqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf n ln nsfjdnlxn ln nl n</p><br><br>
+						<p>djqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf n ln nsfjdnlxn ln nl ndjqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf n ln nsfjdnlxn ln nl ndjqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf n ln nsfjdnlxn ln nl ndjqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf n ln nsfjdnlxn ln nl n</p><br><br>
+									<p>djqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf n ln nsfjdnlxn ln nl ndjqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf 
+	
+		</article>
+		
+	</div>
 	
 </body>
 </html>
