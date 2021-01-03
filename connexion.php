@@ -1,3 +1,4 @@
+
 <?php
   session_start();
   /*
@@ -91,16 +92,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<!-- 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="styles/styles.css"> -->
 
   <title>Connexion</title>
 </head>
 <body>
+    <?php
+      require_once("templates/header.php")  
+    ?>
   <main class="container">
-    <h1>connexion</h1>
-    <p>Pour vous connecter, merci de renseigner les champs suivants:</p>
+    <!-- <h1>connexion</h1>
+    <p>Pour vous connecter, merci de renseigner les champs suivants:</p> -->
     <?php 
       if (isset($_SESSION['error'])) {
           echo '<p class="error">' . $_SESSION['error'] . '</p>';
@@ -108,15 +112,16 @@
       }
     ?>
     
-    <form action="connexion.php" method="POST">
+    <form class="formulaire" action="connexion.php" method="POST">
+      <h3 >Connectez-vous!</h3>
       <label for="login">Login:</label>
       <input type="text" name="login" id="login"> <br />
       
       <label for="pass">password:</label>
       <input type="password" name="password" id="pass"> <br />
       
-      <input type="submit" name='submit' value="connexion">
-      <input type="submit" name='cancel' value="annuler">
+      <input class="input_submit" type="submit" name='submit' value="connexion">
+      <input class="input_annuler" type="submit" name='cancel' value="annuler">
     </form>
   </main>
   <?php

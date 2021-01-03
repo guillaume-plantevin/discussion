@@ -74,7 +74,9 @@
 		?>
 
 		<main class="container">
-			<form action="inscription.php" method="POST">
+
+			<form class="formulaire" action="inscription.php" method="POST">
+				<h3>Inscrivez-vous!</h3>
 
 	            <label for="login">Login:</label>
 	            <input type="text" name="login" id="login" required /><br />
@@ -85,8 +87,8 @@
 	            <label for="passwordConfirm">Confirmation du mot de passe:</label>
 	            <input type="password" name="password_confirm" required /><br />
 
-	            <input type="submit" id="submitButton" name="submit" value="M'inscrire" />
-	            <input type='submit' name='cancel' value='annuler' />          
+	            <input class="input_submit" type="submit" id="submitButton" name="submit" value="M'inscrire" />
+	            <input class="input_annuler" type='submit' name='cancel' value='annuler' />          
 	        </form>
 	        <?php  
 
@@ -103,6 +105,9 @@
 
 	        ?>
     	</main>
+    	<?php 
+		require_once("templates/footer.php")
+		?>
 	
 	</body>
 	</html>

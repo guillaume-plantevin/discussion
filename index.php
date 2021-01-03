@@ -12,19 +12,15 @@ require_once("templates/head.php")
 	<?php 
 	require_once("templates/header.php")
 	?>
-	<div class="img1">
-		<img class="image_soccer" src="images/stade_1.jpg" alt="stade"></img>
-	</div>
 	<div class="presentation">
-		<article>
-			<h1>Bienvenue</h1>
-			<p>djqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf n ln nsfjdnlxn ln nl ndjqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf n ln nsfjdnlxn ln nl ndjqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf n ln nsfjdnlxn ln nl ndjqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf n ln nsfjdnlxn ln nl n</p><br><br>
-						<p>djqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf n ln nsfjdnlxn ln nl ndjqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf n ln nsfjdnlxn ln nl ndjqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf n ln nsfjdnlxn ln nl ndjqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf n ln nsfjdnlxn ln nl n</p><br><br>
-									<p>djqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf n ln nsfjdnlxn ln nl ndjqfvksnffsns zefpisnn niefnsvl lnsvn lnsfnvf 
-	
+		<article class="article-accueil">
+		<h1>Venez rencontrer des passionnés comme vous !</h1>			
+			<p>Ici, vous pourrez <strong> partager, échanger, discuter</strong> avec des milliers de personnes à travers le monde.<br> Pour cela, il vous suffilt de vous <strong>enregistrer</strong> puis de vous <strong>connecter</strong> afin d'accéder à notre fil de discution en <strong>illimité</strong>. </p>
 		</article>
-		
 	</div>
+	<?php 
+	require_once("templates/footer.php")
+	?>
 	
 </body>
 </html>
