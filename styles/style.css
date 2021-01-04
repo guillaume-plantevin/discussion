@@ -171,22 +171,22 @@ li:first-child::before, li:first-child::after {
   margin:20px;
   text-align: center;
   padding: 10px;
-  width: 300px;
+  /* width: 300px; */
 }
-.article-accueil h1{
+/* .article-accueil h1{
   font-family: 'Redressed', cursive;
-}
+} */
 .article-accueil p{
   margin-top: 10px;
   font-family: 'Ubuntu', sans-serif;
   padding: 20px;
 }
 /* =================  inscription  =================== */
-.container{
+/* .container{
   display: flex;
   justify-content: center;
- 
-}
+  align-content: center;
+} */
 .formulaire{
   display: flex;
   justify-content: center;
