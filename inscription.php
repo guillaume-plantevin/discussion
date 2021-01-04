@@ -1,13 +1,6 @@
 <?php
-  /*
-    Une page contenant un formulaire d’inscription (inscription.php) :
-    Le formulaire doit contenir l’ensemble des champs présents dans la table “utilisateurs” 
-    (sauf “id”) ainsi qu’une confirmation de mot de passe. 
-    Dès qu’un utilisateur remplit ce formulaire, 
-    les données sont insérées dans la base de données 
-    et l’utilisateur est redirigé vers la page de connexion.
-  */
-    session_start();
+	session_start();
+	
 	require_once('pdo.php');
 	require_once('functions/functions.php');
 
@@ -107,12 +100,6 @@
 	        		echo '<p class="error" >'.  $_SESSION['error'] . "</p>";
 	        		unset($_SESSION['error']);
 	        	}
-			/*
-	        	elseif (isset($_SESSION['success'])) {
-	        		echo '<p class="success" >'.  $_SESSION['success'] . "</p>";
-	        		unset($_SESSION['success']);
-	        	}
-			*/
 	        ?>
 			<form action="inscription.php" method="POST">
 	            <label for="login">Login:</label>
@@ -129,7 +116,7 @@
 	            <input type='submit' name='cancel' value='annuler' />          
 	        </form>
     	</main>
-	
+		<?php require_once('templates/footer.php'); ?>	
 	</body>
 </html>
             

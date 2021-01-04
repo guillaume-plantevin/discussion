@@ -1,13 +1,4 @@
 <?php
-  /*
-    Une page contenant le fil de discussion (discussion.php) :
-    Sur cette page, les utilisateurs connectés peuvent voir 
-    l’ensemble des messages dans un fil de discussion. 
-    En dessous du fil de discussion se trouvent un champs contenant 
-    le message et un bouton permettant de l’envoyer. 
-    Les utilisateurs non connectés souhaitant accéder 
-    à cette page sont redirigés vers la page de connexion.
-  */
 	session_start();
 
 	require_once('pdo.php');
@@ -15,11 +6,7 @@
 
 	$title = 'discussion';
 
-	// DEBUG
-	// print_r_pre($_SESSION, '$_SESSION:');
-	// print_r_pre($_POST, '$_POST:');
-
-	// IF NOT LOGGED
+	// IF NOT LOGGED, REDIRECT TO CONNEXION WITH AN ERROR MSG
 	if (! isset($_SESSION['logged'])) {
 		$_SESSION['error'] = 'Le fil de discussion n\'est visible que par les utilisateurs qui sont connectés.';
 		header('Location: connexion.php');
@@ -43,10 +30,7 @@
 					(message, id_utilisateur, date) 
 					VALUES 
 					(:message, :id_utilisateur, :date)";
-			// DEBUG
-			// var_dump_pre($sql, '$sql');
-
-			// sanitizing input query
+			
 			$stmt = $pdo->prepare($sql);
 
 			$stmt->execute([
@@ -63,7 +47,7 @@
 	// GET MESSAGES FROM DB
 	$stmt = "SELECT messages.message, utilisateurs.login, messages.date
 			FROM `messages` JOIN `utilisateurs` 
-			WHERE utilisateurs.id = messages.id_utilisateur ORDER BY messages.ID";
+			WHERE utilisateurs.id = messages.id_utilisateur ORDER BY messages.id";
 
 	if (! $result = $pdo->query($stmt) ) 
 		$_SESSION['error'] = 'Les messages enregistrés ne peuvent pas être récupérés.';
@@ -77,16 +61,18 @@
         <main class='container'>
             <h1>Fil de Discussion</h1>
             <p>Si vous voulez rajouter un commentaire, si vous suffit de l'<a href='#message'>écrire</a> et de le valider:</p>
-            <?php 
+			<?php 
+				// IF ERROR MSG
 				if (isset($_SESSION['error'])) {
 					echo '<p class="error">' . $_SESSION['error'] . '</p>';
 					unset($_SESSION['error']);
 				}
-				elseif ( isset($_SESSION['success']) ) 
-				{
+				// IF SUCCESS MSG
+				elseif ( isset($_SESSION['success']) ) {
 					echo '<p class="success">' . $_SESSION['success'] . '</p>';
 					unset($_SESSION['success']);
 				}
+				// PRINT PREVIOUS MSG
 				while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 					$orgDate = $row['date'];  
 					$newDate = date("d-m-Y", strtotime($orgDate));  
@@ -97,17 +83,17 @@
 				}	
 			?>
 			<div>
-				<formfield id='message'>
+				<fieldset id='message'>
 					<legend>Ajouter un message:</legend>
 					<form action="" method="POST">
-						<label for="message" class='block'>Votre message:</label>
+						<!-- <label for="message" class='block'>Votre message:</label> -->
 						<textarea name="message" id="message" cols="40" rows="6"></textarea>
 						<br />
 						
 						<input class='button' type='submit' name='cancel' value='annuler'>
 						<input class='button' type="submit" name='submit' value="enregistrer">
 					</form>
-				</formfield>
+				</fieldset>
 			</div>
         </main>
         <?php require_once('templates/footer.php'); ?>
