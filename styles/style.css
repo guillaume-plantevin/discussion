@@ -224,3 +224,13 @@ li:first-child::before, li:first-child::after {
 .footer p {
   padding: .8em 0;
 }
+
+
+/* #message {
+  background-color: rgba(139, 139, 139, 0.219);
+  border: 1px solid black;
+} */
+
+/* #message:input {
+  padding: 1em;
+} */
