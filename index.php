@@ -1,6 +1,5 @@
 <?php 
 	session_start(); 
-
 	$title = "accueil";
 ?>
 
@@ -11,11 +10,13 @@
 		<?php require_once("templates/header.php") ?>
 		<main class="'container">
 			<h1>Accueil</h1>
-			<div class="video1">
-				<video class="video_soccer" width="1200" autoplay="" >
-					<source src="videos/foot.mp4" type="video/mp4">
-				</video>
-			</div>
+      <article class="article-accueil presentation">
+      <!-- changement du h1 initial en h2 -->
+		  <h2>Venez rencontrer des passionnés comme vous !</h2>			
+			<p>Ici, vous pourrez <strong> partager, échanger, discuter</strong> avec des milliers de personnes à travers le monde.<br> 
+        Pour cela, il vous suffilt de vous <strong>enregistrer</strong> puis de vous <strong>connecter</strong> afin d'accéder à notre fil de discution en <strong>illimité</strong>. 
+      </p>
+		</article>
 		</main>
 		<?php require_once('templates/footer.php'); ?>
 	</body>

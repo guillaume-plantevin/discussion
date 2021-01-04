@@ -22,26 +22,13 @@
 					else 
 						echo  "<a itemprop=\"item\" href=\"connexion.php\"><span itemprop=\"name\">Connexion</span></a><meta itemprop=\"position\" content=\"3\" /></li>" ;
 				?>	
-			<!-- </li> -->
 			<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-				<a itemprop="item" href="discussion.php"><span itemprop="name">Discussion</span></a><meta itemprop="position" content="4" />
+				<a itemprop="item" href="discussion.php"> 
+					<span itemprop="name">Discussion</span>
+				</a>
+				<meta itemprop="position" content="4" />
+
 			</li>
 		</ol>
-		<!-- <ul id="menu-accordeon">
-			<li><a href="index.php">Accueil</a></li>
-
-			<li>
-				<a href="#">Utilisateur</a>
-	  			<ul>
-	     			<li><a href="inscription.php">inscription</a></li>
-	     			<li><a href="connexion.php">connexion</a></li>
-	     			<li><a href="profil.php">changement de profil</a></li>
-	     			<li><a href="deconnexion.php">déconnexion</a></li>
-	  			</ul>
-			</li>
-			<li>
-				<a href="discussion.php">Discussion</a>
-			</li>
-		</ul> -->
 	</nav>
 </header>

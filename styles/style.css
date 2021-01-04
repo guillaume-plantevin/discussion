@@ -18,40 +18,41 @@
   border-radius: 10px;
   color: white;
 }
-/*ACCUEIL    134 111 79 */  
-
+/*
 .body-accueil{
-  /*background-color: rgb(168, 120, 84);*/
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
-
+*/
 /* ==================  Personnalisation du titre  =================*/
+.h1-accueil 
+{
+    font-family: "titre";
+    text-align: center;
+    font-size: 90px;
+    padding-top: 70px;
+    padding-left: 20px; 
+    height: 250px;
+    color: black;
+    margin-left: 275px;
 
-.h1-accueil {
-  font-family: "titre";
-  text-align: center;
-  font-size: 90px; 
-  height: 250px;
-  color: black;
-  margin-left: 275px;
 }
 
 header {
-  margin:20px;
-  height: 250px;
-  border-radius: 5px;
-  width: 90%;
-  height: 250px;
-  border-radius: 5px;
-  box-shadow: 0 0 20em  lightgrey;
-  background: no-repeat center  url(../images/bk3.jpg);
-  background-size: cover;
+   /* font-family: 'Redressed', cursive;*/
+    margin:20px;
+    height: 250px;
+    border-radius: 5px;
+    width: 90%;
+    height: 250px;
+    border-radius: 5px;
+    box-shadow: 0 0 20em  lightgrey;
+    background: no-repeat center  url(../images/bk3.jpg);
+    background-size: cover;
 }
-
 .div1-accueil{
-    margin-top: 80px;
+    margin-top: 100px;
 }
 /*  ================  FORM  ===================== */
 label {
@@ -59,59 +60,37 @@ label {
     width: 8em;
     margin-bottom: 1em;
 }
+/* =================  FOOTER ===================== */
+.footer {
+    /* padding: 0; margin: 0; box-sizing: border-box; */
+    /* width: 100%; */
+    height: 3em;
+    background-color: #bf5745;
+    /*position: absolute;*/
+    bottom: 0;
+    text-align: center;
+}
+.footer p {
+    padding: 1em 0;
+}
 /* ================== NAV-BAR ================== */
+
 nav{
+  padding-left: 280px;
     margin-top: -80px;
     display: flex;
     justify-content: center;
 }
-/* ATTENTION, J'AI RAJOUTE BACKGROUND */
 header nav ol li a:hover{
-color: black;
-background: rgba(58, 58, 58, 0.233);
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px red, 0 0 5px darkred;
 }
 .breadcrumb {
   list-style-type: none;
   padding: 0;
 }
-
-li {
-  display: inline-block;
-  position: relative;
-}
 li:last-child a {
-  cursor: default;
-}
-li:last-child::before {
-    background: #d88d5d;
-} 
-
-li:last-child::after {
-  background: #d88d5d;
-}
-li:hover::before, li:hover::after {
-  background: #794036;
-}
-li::before, li::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  height: 50%;
-  width: 100%;
-  background:#d88d5d;
-  border-left: 2px solid black;
-  border-right: 2px solid black;
-  z-index: -2;
-}
-li::before {
-  top: -2px;
-  transform: skew(30deg);
-  border-top: 2px solid #666;
-}
-li::after {
-  bottom: -2px;
-  transform: skew(-30deg);
-  border-bottom: 2px solid #666;
+  cursor: pointer;
 }
 /* pose un problème sur mes pages */
 header a {
@@ -121,6 +100,16 @@ header a {
   position: relative;
   line-height: 2.5;
   padding: 0 20px;
+  color: black;
+  text-decoration: none;
+}
+/* ============== TABLE ======================= */
+table td{
+    border: 2px solid black;
+}
+table tr td {
+    border-collapse: collapse;
+
   color: white;
   text-decoration: none;
 }
@@ -138,61 +127,6 @@ li:first-child::before, li:first-child::after {
     margin-bottom: 20px;
     width: 100%;
 }
-/*
-#menu-accordeon {
-  padding:0;
-  margin:0;
-  list-style:none;
-  text-align: center;
-  width: 180px;
-}
-#menu-accordeon ul {
-  padding:0;
-  margin:0;
-  list-style:none;
-  text-align: center;
-}
-#menu-accordeon li {
-        background-color:#d88d5d; 
-        border-radius: 6px;
-        margin-bottom:2px;
-        box-shadow: 3px 3px 3px #999;
-        border:solid 1px #333A40
-}
-#menu-accordeon li li {
-        max-height:0;
-        overflow: hidden;
-        transition: all .5s;
-        border-radius:0;
-        background: #d88d5d;
-        box-shadow: none;
-        border:none;
-        margin:0
-}
-#menu-accordeon a {
-        display:block;
-        text-decoration: none;
-        padding: 8px 0;
-        font-family: verdana;
-        font-size:1.2em;
-        color:black;
-}
-#menu-accordeon ul li a, #menu-accordeon li:hover li a {
-        font-size:1em
-}
-#menu-accordeon li:hover {
-        background:  #794036;
-}
-#menu-accordeon li li:hover {
-        background: #794036;
-}
-#menu-accordeon ul li:last-child {
-        border-radius: 0 0 6px 6px;
-        border:none;
-}
-#menu-accordeon li:hover li {
-        max-height: 15em;
-}*/
 /* ============== ARTICLE-DISCUSSION ======================= */
 .commentaires {
   margin: 2em 0;
@@ -209,8 +143,6 @@ li:first-child::before, li:first-child::after {
 .commentaires p {
   padding-left: 1em;
 }
-
-
 /* =================  FOOTER ===================== */
 .footer {
   background-color: #B1695F;
@@ -224,13 +156,64 @@ li:first-child::before, li:first-child::after {
 .footer p {
   padding: .8em 0;
 }
+/*  =============   ACCUEIL   =====================  */
+.presentation{
 
-
-/* #message {
-  background-color: rgba(139, 139, 139, 0.219);
-  border: 1px solid black;
-} */
-
-/* #message:input {
-  padding: 1em;
-} */
+  display: flex;
+  justify-content: center;
+}
+.article-accueil{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /*border:solid 1px grey;*/
+  border-radius: 10px;
+  margin:20px;
+  text-align: center;
+  padding: 10px;
+  width: 300px;
+}
+.article-accueil h1{
+  font-family: 'Redressed', cursive;
+}
+.article-accueil p{
+  margin-top: 10px;
+  font-family: 'Ubuntu', sans-serif;
+  padding: 20px;
+}
+/* =================  inscription  =================== */
+.container{
+  display: flex;
+  justify-content: center;
+ 
+}
+.formulaire{
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  border: #7c362a solid 1px;
+  flex-direction: column;
+  margin-bottom: 50px;
+  margin-top:50px;
+  width: 400px;
+}
+.formulaire:hover{
+  box-shadow: 4px 4px 6px 8px rgba(124,54,42,0.4);
+}
+.formulaire h3{
+  margin-bottom: 20px;
+  font-size:30px;
+  color: rgba(124,54,42,0.4);
+}
+.input_submit{
+   background-color: #bf5745;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px red, 0 0 5px darkred;
+    margin-bottom: 10px; 
+}
+.input_annuler{
+     background-color: #bf5745;
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px red, 0 0 5px darkred; 
+    margin-top: 10px;
+}

@@ -89,6 +89,7 @@
 <html lang="fr">
 	<?php require_once("templates/head.php") ?>
 	<body>
+
 		<?php require_once("templates/header.php") ?>
 		<main class="container">
 			<h1>Inscription</h1>
@@ -100,7 +101,7 @@
 	        		echo '<p class="error" >'.  $_SESSION['error'] . "</p>";
 	        		unset($_SESSION['error']);
 	        	}
-	        ?>
+	    ?>
 			<form action="inscription.php" method="POST">
 	            <label for="login">Login:</label>
 	            <input type="text" name="login" id="login" /><br />
@@ -110,13 +111,11 @@
 
 	            <label for="passwordConfirm">Confirmation du mot de passe:</label>
 	            <input type="password" name="password_confirm" /><br />
-
-				<input type="submit" id="submitButton" name="submit" value="Inscription" />
-				
-	            <input type='submit' name='cancel' value='annuler' />          
+        
+              <input type="submit" id="submitButton" name="submit" value="Inscription" />
+              <input type='submit' name='cancel' value='annuler' />          
 	        </form>
     	</main>
 		<?php require_once('templates/footer.php'); ?>	
 	</body>
 </html>
-            
